@@ -13,6 +13,10 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python }}
+      - name: Install audio tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends ffmpeg
       - run: python -m pip install -e ".[dev]"
       - run: python -m pytest -q
       - run: python -m quietscribe demo
